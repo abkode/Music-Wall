@@ -1,14 +1,16 @@
 <h1>All Songs</h1>
-<hr/>
 
-<% @songs.each do |songs| %>
-  <div class="message">
-    <h3><a href="/songs/<%= songs.id %>"><%= songs.song_title %></a> <small>(by: <%= songs.author %>)</small></h3>
-    <p>
-      <%= songs.url %>
-    </p>
-  </div>
+<% @songs.each do |song| %>
+	<table class="table table-bordered">
+		<tr>
+			<td>
+			    <h3><a href="/songs/<%= song.id %>"><%= song.song_title %></a> </h3>
+			    <h3><small>by: <%= song.author %></small></h3>
+			    <a href="<%= song.url %>"> <%= song.song_title %></a>
+		    </td>
+		</tr>      
+	 
+	</table>
 <% end %>
 
-<hr/>
-<a href="/songs/new">Add new songs... </a>
+<a class="btn btn-success" href="/songs/new">Add new songs... </a>

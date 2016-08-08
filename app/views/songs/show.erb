@@ -1,12 +1,13 @@
 <h1><%= @songs.song_title %></h1>
 
-<p>
-  Author: <%= @songs.author %>
-</p>
+<blockquote>
+	<p>
+	  Author: <%= @songs.author %>
+	</p>
 
-<p>
-  <%= @songs.url  %>
-</p>
-
+	<a href="<%= @songs.url  %>"><%= @songs.song_title %></a>
+	  
+	
+</blockquote>
 <hr/>
-<a href="/songs">Back to All songs</a>
+<a class="btn btn-success" href="/songs">Back to All songs</a>

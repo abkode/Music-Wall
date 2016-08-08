@@ -5,27 +5,29 @@
   <div>
     <strong>Some issues with your songs, please fix them:</strong>
     <ul>
-      <% @songs.errors.full_songs.each do |song| %>
+      <% @songs.errors.full_message.each do |song| %>
         <li><%= song %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<form method="post" action="/songs">
-  <div>
-    <label>Author:</label>
-    <input type="text" name="author" value="<%= @songs.author %>">
+<form method="post" action="/songs" >
+  <div class="form-group">
+    <label for="exampleInputAuthor">Author</label>
+    <input type="text" class="form-control" name="author" value="<%= @songs.author %>">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputSongTitle">Song Title:</label>
+    <input type="text" class="form-control" name="song_title" value="<%= @songs.song_title %>">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputSongTitle">URL:</label>
+    <input type="text" class="form-control" name="url" value="<%= @songs.url %>">
   </div>
   <div>
-    <label>Song Title:</label>
-    <input type="text" name="song_title" value="<%= @songs.song_title %>">
-  </div>
-  <div>
-    <label>URL:</label>
-    <input type="text" name="url" value="<%= @songs.url %>">
-  </div>
-  <div>
-    <input type="submit" value="Submit" >
+    <input type="submit" class="btn btn-primary" value="Submit" >
   </div>
 </form>
