@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322145824) do
-
+ActiveRecord::Schema.define(version: 20160808115725) do
   create_table "music", force: true do |t|
     t.string "song_title"
     t.string "author"
