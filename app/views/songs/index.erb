@@ -1,4 +1,4 @@
-<h1>All Songs</h1>
+<h1 class="text-center">The Songs</h1>
 
 <% @songs.each do |song| %>
 	<table class="table table-bordered">
@@ -7,6 +7,7 @@
 			    <h3><a href="/songs/<%= song.id %>"><%= song.song_title %></a> </h3>
 			    <h3><small>by: <%= song.author %></small></h3>
 			    <a href="<%= song.url %>"> <%= song.song_title %></a>
+			    <p>created at: <%= song.created_at %></p>
 		    </td>
 		</tr>      
 	 
