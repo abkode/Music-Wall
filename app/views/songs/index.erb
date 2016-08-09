@@ -1,5 +1,5 @@
 <h1 class="text-center">The Songs</h1>
-
+<h5>Login as: <%= current_user.name %></h5>
 <% @songs.each do |song| %>
 	<table class="table table-bordered">
 		<tr>
@@ -7,7 +7,22 @@
 			    <h3><a href="/songs/<%= song.id %>"><%= song.song_title %></a> </h3>
 			    <h3><small>by: <%= song.author %></small></h3>
 			    <a href="<%= song.url %>"> <%= song.song_title %></a>
-			    <p>created at: <%= song.created_at %></p>
+			    <p>created by: <%= song.user.name %> - at: <%= song.created_at %></p>
+			    <% if current_user %>
+			      <% if current_user.has_already_upvoted?(song) %>
+			        <p>Already upvoted</p>
+			      <% else %>
+
+			      	<form method="post" action="/upvote" class="form-horizontal">
+			      		<input type="hidden" name="song_id" value="<%= song.id %>">
+			      		<input type="hidden" name="user_id" value="<%= song.user.id %>">
+				      	<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Upvote
+						</button>
+					</form>
+						
+			      <% end %>
+			    <% end %>
 		    </td>
 		</tr>      
 	 
@@ -15,3 +30,4 @@
 <% end %>
 
 <a class="btn btn-success" href="/songs/new">Add new songs... </a>
+<a class="btn btn-default" href="/logout">Logout </a>

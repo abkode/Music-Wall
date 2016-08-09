@@ -1,11 +1,12 @@
 class AddSongs < ActiveRecord::Migration
   def change
     create_table :songs do |t|
+      t.belongs_to :users		
       t.string :song_title
       t.string :author
       t.string :url
-      t.date :created_at
-      t.date :updated_at
+      t.timestamps
+      # t.timesstamps
     end
   end
 end

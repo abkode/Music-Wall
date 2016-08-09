@@ -1,11 +1,11 @@
 require 'rubygems'
 require 'bundler/setup'
-
+require 'pry'
 require 'active_support/all'
-
 # Load Sinatra Framework (with AR)
 require 'sinatra'
 require 'sinatra/activerecord'
+
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
