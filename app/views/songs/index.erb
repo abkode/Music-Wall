@@ -1,3 +1,4 @@
+
 <h1 class="text-center">The Songs</h1>
 <h5>Login as: <%= current_user.name %></h5>
 <% @songs.each do |song| %>
@@ -11,17 +12,24 @@
 			    <% if current_user %>
 			      <% if current_user.has_already_upvoted?(song) %>
 			        <p>Already upvoted</p>
+			        <button type="submit" class="btn btn-default disabled">
+						<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Voted
+					</button>
 			      <% else %>
 
 			      	<form method="post" action="/upvote" class="form-horizontal">
 			      		<input type="hidden" name="song_id" value="<%= song.id %>">
 			      		<input type="hidden" name="user_id" value="<%= song.user.id %>">
-				      	<button type="submit" class="btn btn-default">
+
+				      	<button type="submit" class="btn btn-primary">
 							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Upvote
 						</button>
 					</form>
 						
+
+
 			      <% end %>
+			      <%= song.upvotes.length %> vote(s)
 			    <% end %>
 		    </td>
 		</tr>      

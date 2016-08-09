@@ -11,9 +11,15 @@ get '/' do
   erb :'login/index'
 end
 
+
 get '/songs' do
-  @songs = Song.all
-  erb :'songs/index'
+  if login?
+    @songs = Song.all
+    erb :'songs/index'
+   else
+      erb :'login/index'
+   end 
+
 end
 
 get '/songs/new' do
