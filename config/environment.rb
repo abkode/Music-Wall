@@ -6,6 +6,8 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 
+# require 'rack-flash'
+# require 'bcrypt'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
@@ -16,9 +18,12 @@ configure do
   set :server, :puma
 
   enable :sessions
+  # use Rack::Flash
   set :session_secret, ENV['SESSION_KEY'] || 'lighthouselabssecret'
 
   set :views, File.join(Sinatra::Application.root, "app", "views")
+
+  # enable :method_override
 end
 
 # Set up the database and models

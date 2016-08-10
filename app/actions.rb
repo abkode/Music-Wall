@@ -29,6 +29,10 @@ end
 
 get '/songs/:id' do
   @songs = Song.find params[:id]
+  
+  @reviews = Review.where(song_id: params[:id])
+  # @reviews[0][:review]
+  # binding.pry
   erb :'songs/show'
 end
 
@@ -104,13 +108,11 @@ post "/signup" do
 end 
 
 post "/upvote" do
-
   @upvote = Upvote.new(
     song_id:   params[:song_id],
     user_id: params[:user_id]
   )
   if @upvote.save
-    # redirect 'login/index'
     @songs = Song.all
     erb :'songs/index'
   else
@@ -118,4 +120,23 @@ post "/upvote" do
   end
 
 end 
+
+post "/review" do
+  @review = Review.new(
+    song_id:   params[:song_id],
+    user_id: session[:user_id],
+    review: params[:review],
+    rating: params[:rating]
+  )
+  if @review.save
+    # @songs = Song.all
+    redirect "/songs/#{@review.song_id}"
+  else
+    # redirect "/"
+    # erb :'signup/signup'
+    # flash[:notice] = "Duplicate review not allowed!"
+  end
+
+end 
+
 
